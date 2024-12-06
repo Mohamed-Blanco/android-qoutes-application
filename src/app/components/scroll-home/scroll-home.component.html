@@ -1,0 +1,415 @@
+<div class="relative">
+    @if(loading){
+    <div [style.color]="text_color" [style.background-color]="background_color"
+        class="qoutenavbar shadow-lg  text-lg z-20 py-4 px-6 fixed w-screen  ">
+        <p>Qoutes : </p>
+    </div>
+
+    <div class="justify-center items-center h-screen w-screen flex">
+        <app-loading></app-loading>
+    </div>
+
+    <div [style.color]="text_color" [style.background-color]="background_color"
+        class="qoutenavbar shadow-lg text-lg py-4 px-6 fixed bottom-0 w-screen flex justify-center  gap-20">
+
+        <button (click)="Switchfavourite()" (click)="getAllFavorites()">
+            <svg class="w-5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+                        fill="	#ff009e"></path>
+                </g>
+            </svg>
+        </button>
+
+
+        <svg class="w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path
+                    d="M15.0309 3.30271C13.0299 2.8991 10.9701 2.8991 8.96913 3.30271C6.66186 3.76809 5 5.82231 5 8.20894V18.6292C5 20.4579 6.9567 21.596 8.51221 20.6721L11.3451 18.9895C11.7496 18.7492 12.2504 18.7492 12.6549 18.9895L15.4878 20.6721C17.0433 21.596 19 20.4579 19 18.6292V8.20894C19 5.82231 17.3381 3.76809 15.0309 3.30271Z"
+                    fill="#efbf04"></path>
+            </g>
+        </svg>
+    </div>
+    }
+    @else{
+
+
+    @if (!pageFavorite) {
+
+    <div [style.color]="text_color" [style.background-color]="background_color"
+        class=" shadow-lg  text-lg z-20 py-4 px-6 fixed w-screen  ">
+        <p>Qoutes : </p>
+    </div>
+
+    @if (expand) {
+    <app-qoute-overview class="fixed z-30" [qoute]="qouteToPass"></app-qoute-overview>
+    <button id="expandButton" (click)="expand = false">
+        <svg class="z-50 w-5 h-5 absolute right-5 top-5 " viewBox="0 0 32 32" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <title>expand</title>
+                <desc>Created with Sketch Beta.</desc>
+                <defs> </defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-310.000000, -1193.000000)"
+                        fill="#ffffff">
+                        <path
+                            d="M341.977,1194.15 C341.976,1193.84 341.836,1193.56 341.623,1193.37 C341.43,1193.16 341.158,1193.01 340.849,1193.01 L332.079,1193 C331.499,1193 331.029,1193.47 331.029,1194.06 C331.03,1194.64 331.708,1195.3 331.998,1195.59 L334.216,1197.82 L328,1204 L331,1207 L337.174,1200.8 L339.392,1203.03 C339.871,1203.52 340.358,1204.03 340.938,1204.03 C341.52,1204.03 341.989,1203.56 341.988,1202.97 L341.977,1194.15 L341.977,1194.15 Z M321,1211 L314.746,1217.38 L312.565,1215.2 C312.094,1214.73 311.614,1214.22 311.044,1214.22 C310.473,1214.22 310.011,1214.68 310.012,1215.25 L310.023,1223.88 C310.023,1224.18 310.161,1224.45 310.371,1224.64 C310.561,1224.85 310.828,1224.99 311.132,1224.99 L319.756,1225 C320.326,1225 320.788,1224.54 320.788,1223.97 C320.787,1223.4 320.121,1222.75 319.835,1222.47 L317.654,1220.29 L324,1214 L321,1211 L321,1211 Z"
+                            id="expand" sketch:type="MSShapeGroup"> </path>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </button>
+    }
+
+
+    <div id="Copymessage"
+        class="scale-0 opacity-0 duration-200 transition-all  fixed h-64 w-[80%] top-1/3 left-[10%] shadow-xl right-0  bottom-0  gap-10 flex justify-center items-center flex-col z-40 bg-white px-10  rounded-lg">
+        <div>
+            <p class="text-xl text-center mb-2">Succes 🌟</p>
+            <p [style.color]="qoutes_color" class="text-center">
+                here's to starting your day with precision and positivity! 🚀</p>
+        </div>
+
+        <svg class="w-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="M9 10L12.2581 12.4436C12.6766 12.7574 13.2662 12.6957 13.6107 12.3021L20 5" stroke="#33363F"
+                    stroke-width="2" stroke-linecap="round"></path>
+                <path
+                    d="M21 12C21 13.8805 20.411 15.7137 19.3156 17.2423C18.2203 18.7709 16.6736 19.9179 14.893 20.5224C13.1123 21.1268 11.187 21.1583 9.38744 20.6125C7.58792 20.0666 6.00459 18.9707 4.85982 17.4789C3.71505 15.987 3.06635 14.174 3.00482 12.2945C2.94329 10.415 3.47203 8.56344 4.51677 6.99987C5.56152 5.4363 7.06979 4.23925 8.82975 3.57685C10.5897 2.91444 12.513 2.81996 14.3294 3.30667"
+                    [attr.stroke]="qoutes_color" stroke-width="2" stroke-linecap="round"></path>
+            </g>
+        </svg>
+    </div>
+
+
+    <div id="savedelement"
+        class="scale-0 opacity-0 duration-200 transition-all  fixed h-64 w-[80%] top-1/3 left-[10%] shadow-xl right-0  bottom-0  gap-10 flex justify-center items-center flex-col z-40 bg-white px-10  rounded-lg">
+        <div>
+            <p class="text-xl text-center mb-2">Succes 🌟</p>
+            <p [style.color]="qoutes_color" class="text-center">
+                Your quote has been saved successfully! 🎉check your Documents directory. 😊
+            </p>
+        </div>
+
+        <svg class="w-20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path d="M9 10L12.2581 12.4436C12.6766 12.7574 13.2662 12.6957 13.6107 12.3021L20 5" stroke="#33363F"
+                    stroke-width="2" stroke-linecap="round"></path>
+                <path
+                    d="M21 12C21 13.8805 20.411 15.7137 19.3156 17.2423C18.2203 18.7709 16.6736 19.9179 14.893 20.5224C13.1123 21.1268 11.187 21.1583 9.38744 20.6125C7.58792 20.0666 6.00459 18.9707 4.85982 17.4789C3.71505 15.987 3.06635 14.174 3.00482 12.2945C2.94329 10.415 3.47203 8.56344 4.51677 6.99987C5.56152 5.4363 7.06979 4.23925 8.82975 3.57685C10.5897 2.91444 12.513 2.81996 14.3294 3.30667"
+                    [attr.stroke]="qoutes_color" stroke-width="2" stroke-linecap="round"></path>
+            </g>
+        </svg>
+    </div>
+
+    <div class="pt-32  h-screen relative">
+
+        <div class="px-4 flex flex-col gap-10 pb-40 ">
+            <div id="item{{i}}" *ngFor="let Qoutes of Qoutes_data; let i = index" [style.color]="text_color"
+                [style.background-color]="qoutes_color"
+                class="relative h-[22rem] overflow-hidden rounded-lg flex flex-col justify-between shadow-lg ">
+
+                <button id="expandButton" (click)="PassQoute(Qoutes)">
+                    <svg class="w-5 h-5 absolute right-4 top-4 " viewBox="0 0 32 32" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <title>expand</title>
+                            <desc>Created with Sketch Beta.</desc>
+                            <defs> </defs>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                sketch:type="MSPage">
+                                <g id="Icon-Set-Filled" sketch:type="MSLayerGroup"
+                                    transform="translate(-310.000000, -1193.000000)" fill="#ffffff">
+                                    <path
+                                        d="M341.977,1194.15 C341.976,1193.84 341.836,1193.56 341.623,1193.37 C341.43,1193.16 341.158,1193.01 340.849,1193.01 L332.079,1193 C331.499,1193 331.029,1193.47 331.029,1194.06 C331.03,1194.64 331.708,1195.3 331.998,1195.59 L334.216,1197.82 L328,1204 L331,1207 L337.174,1200.8 L339.392,1203.03 C339.871,1203.52 340.358,1204.03 340.938,1204.03 C341.52,1204.03 341.989,1203.56 341.988,1202.97 L341.977,1194.15 L341.977,1194.15 Z M321,1211 L314.746,1217.38 L312.565,1215.2 C312.094,1214.73 311.614,1214.22 311.044,1214.22 C310.473,1214.22 310.011,1214.68 310.012,1215.25 L310.023,1223.88 C310.023,1224.18 310.161,1224.45 310.371,1224.64 C310.561,1224.85 310.828,1224.99 311.132,1224.99 L319.756,1225 C320.326,1225 320.788,1224.54 320.788,1223.97 C320.787,1223.4 320.121,1222.75 319.835,1222.47 L317.654,1220.29 L324,1214 L321,1211 L321,1211 Z"
+                                        id="expand" sketch:type="MSShapeGroup"> </path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+
+
+                <div class="flex items-center justify-center h-full text-center px-6">
+                    @if (Qoutes){
+                    <p class="text-lg"> {{Qoutes.content}} </p>
+                    }
+
+                </div>
+                <div class="flex justify-end pr-8 pb-8">
+                    <p>{{Qoutes.author}}</p>
+
+                </div>
+
+                <div [style.background-color]="qoutes_bottom_color"
+                    class="px-10 py-4 flex justify-between items-center ">
+                    @if (Qoutes.favorited) {
+
+                    <button (click)="deleteFav(Qoutes.content )">
+
+                        <svg class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10" viewBox="0 0 24 24"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
+                                    stroke="#FF009E" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </g>
+                        </svg>
+                    </button>
+
+                    }@else {
+
+                    <button (click)="addFavorite(Qoutes.content , Qoutes.author)">
+
+                        <svg class="h-7 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
+                                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </g>
+                        </svg>
+                    </button>
+
+
+
+                    }
+
+                    <button (click)="captureScreenshot(i)">
+                        <svg class="h-7 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g id="File / Download_Package">
+                                    <path id="Vector" [attr.stroke]="qoutes_color"
+                                        d="M4 8V16.8C4 17.9201 4 18.4798 4.21799 18.9076C4.40973 19.2839 4.71547 19.5905 5.0918 19.7822C5.5192 20 6.07899 20 7.19691 20H16.8031C17.921 20 18.48 20 18.9074 19.7822C19.2837 19.5905 19.5905 19.2839 19.7822 18.9076C20 18.4802 20 17.921 20 16.8031V8M4 8H20M4 8L5.36518 5.61089C5.7002 5.0246 5.86768 4.73151 6.10325 4.51807C6.31184 4.32907 6.55859 4.18605 6.82617 4.09871C7.12861 4 7.46623 4 8.14258 4H15.8571C16.5334 4 16.8723 4 17.1747 4.09871C17.4423 4.18605 17.6879 4.32907 17.8965 4.51807C18.1322 4.73168 18.3002 5.02507 18.6357 5.6123L20 8M12 11V17M12 17L15 15M12 17L9 15"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+
+                    <button (click)="copyTo(Qoutes.content)">
+                        <svg class="h-6 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+                                    fill="#0F0F0F"></path>
+                                <path
+                                    d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+                                    fill="#0F0F0F"></path>
+                            </g>
+                        </svg>
+                    </button>
+
+                    <button (click)="shareContent()">
+                        <svg class="h-6 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g id="Communication / Share_iOS_Export">
+                                    <path id="Vector" [attr.stroke]="qoutes_color"
+                                        d="M9 6L12 3M12 3L15 6M12 3V13M7.00023 10C6.06835 10 5.60241 10 5.23486 10.1522C4.74481 10.3552 4.35523 10.7448 4.15224 11.2349C4 11.6024 4 12.0681 4 13V17.8C4 18.9201 4 19.4798 4.21799 19.9076C4.40973 20.2839 4.71547 20.5905 5.0918 20.7822C5.5192 21 6.07899 21 7.19691 21H16.8036C17.9215 21 18.4805 21 18.9079 20.7822C19.2842 20.5905 19.5905 20.2839 19.7822 19.9076C20 19.4802 20 18.921 20 17.8031V13C20 12.0681 19.9999 11.6024 19.8477 11.2349C19.6447 10.7448 19.2554 10.3552 18.7654 10.1522C18.3978 10 17.9319 10 17 10"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                    </path>
+                                </g>
+                            </g>
+
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+    }@else {
+    <div [style.color]="text_color" [style.background-color]="background_color"
+        class="shadow-lg text-lg z-20 py-4 px-6 fixed w-screen  flex justify-between items-center">
+        <p>Favourites : </p>
+
+        <button class="w-8 h-8" (click)="Switchfavourite()">
+            <svg class="w-6 " viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M11.7071 4.29289C12.0976 4.68342 12.0976 5.31658 11.7071 5.70711L6.41421 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H6.41421L11.7071 18.2929C12.0976 18.6834 12.0976 19.3166 11.7071 19.7071C11.3166 20.0976 10.6834 20.0976 10.2929 19.7071L3.29289 12.7071C3.10536 12.5196 3 12.2652 3 12C3 11.7348 3.10536 11.4804 3.29289 11.2929L10.2929 4.29289C10.6834 3.90237 11.3166 3.90237 11.7071 4.29289Z"
+                        fill="#ffffff"></path>
+                </g>
+            </svg>
+        </button>
+    </div>
+
+    <div class="pt-32  h-screen relative">
+
+        <div class="px-4 flex flex-col gap-10 pb-40 ">
+
+
+
+            <div *ngFor="let Qoutes of favourite ; let i = index" [style.color]="text_color"
+                [style.background-color]="qoutes_color"
+                class="h-[22rem] overflow-hidden rounded-lg flex flex-col justify-between shadow-lg ">
+                <div class="flex items-center justify-center h-full text-center px-6">
+                    @if (Qoutes){
+                    <p class="text-lg"> {{Qoutes.content}} </p>
+                    }
+
+                </div>
+                <div class="flex justify-end pr-8 pb-8">
+                    <p>{{Qoutes.author}}</p>
+
+                </div>
+                <div [style.background-color]="qoutes_bottom_color"
+                    class="px-10 py-4 flex justify-between items-center ">
+
+                    <button (click)="deleteFav(Qoutes.content)">
+
+                        <svg id="favorited" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
+                                    stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                                </path>
+                            </g>
+                        </svg>
+
+
+                    </button>
+
+
+
+                    <button>
+                        <svg class="h-7 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g id="File / Download_Package">
+                                    <path id="Vector" [attr.stroke]="qoutes_color"
+                                        d="M4 8V16.8C4 17.9201 4 18.4798 4.21799 18.9076C4.40973 19.2839 4.71547 19.5905 5.0918 19.7822C5.5192 20 6.07899 20 7.19691 20H16.8031C17.921 20 18.48 20 18.9074 19.7822C19.2837 19.5905 19.5905 19.2839 19.7822 18.9076C20 18.4802 20 17.921 20 16.8031V8M4 8H20M4 8L5.36518 5.61089C5.7002 5.0246 5.86768 4.73151 6.10325 4.51807C6.31184 4.32907 6.55859 4.18605 6.82617 4.09871C7.12861 4 7.46623 4 8.14258 4H15.8571C16.5334 4 16.8723 4 17.1747 4.09871C17.4423 4.18605 17.6879 4.32907 17.8965 4.51807C18.1322 4.73168 18.3002 5.02507 18.6357 5.6123L20 8M12 11V17M12 17L15 15M12 17L9 15"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+
+                    <button (click)="copyTo(Qoutes.content)">
+                        <svg class="h-6 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z"
+                                    fill="#0F0F0F"></path>
+                                <path
+                                    d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z"
+                                    fill="#0F0F0F"></path>
+                            </g>
+                        </svg>
+                    </button>
+
+                    <button (click)="shareContent()">
+                        <svg class="h-6 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g id="Communication / Share_iOS_Export">
+                                    <path id="Vector" [attr.stroke]="qoutes_color"
+                                        d="M9 6L12 3M12 3L15 6M12 3V13M7.00023 10C6.06835 10 5.60241 10 5.23486 10.1522C4.74481 10.3552 4.35523 10.7448 4.15224 11.2349C4 11.6024 4 12.0681 4 13V17.8C4 18.9201 4 19.4798 4.21799 19.9076C4.40973 20.2839 4.71547 20.5905 5.0918 20.7822C5.5192 21 6.07899 21 7.19691 21H16.8036C17.9215 21 18.4805 21 18.9079 20.7822C19.2842 20.5905 19.5905 20.2839 19.7822 19.9076C20 19.4802 20 18.921 20 17.8031V13C20 12.0681 19.9999 11.6024 19.8477 11.2349C19.6447 10.7448 19.2554 10.3552 18.7654 10.1522C18.3978 10 17.9319 10 17 10"
+                                        stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                    </path>
+                                </g>
+                            </g>
+
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+    }
+
+
+
+    <div [style.color]="text_color" [style.background-color]="background_color"
+        class="text-lg py-4 px-6 fixed bottom-0 w-screen flex justify-center  gap-20">
+
+        <button (click)="Switchfavourite()" (click)="getAllFavorites()">
+            <svg class="w-5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+                        fill="	#ff009e"></path>
+                </g>
+            </svg>
+        </button>
+
+
+        <svg class="w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+                <path
+                    d="M15.0309 3.30271C13.0299 2.8991 10.9701 2.8991 8.96913 3.30271C6.66186 3.76809 5 5.82231 5 8.20894V18.6292C5 20.4579 6.9567 21.596 8.51221 20.6721L11.3451 18.9895C11.7496 18.7492 12.2504 18.7492 12.6549 18.9895L15.4878 20.6721C17.0433 21.596 19 20.4579 19 18.6292V8.20894C19 5.82231 17.3381 3.76809 15.0309 3.30271Z"
+                    fill="#efbf04"></path>
+            </g>
+        </svg>
+    </div>
+
+    }
+</div>

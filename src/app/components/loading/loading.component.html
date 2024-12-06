@@ -1,0 +1,8 @@
+<div wire:loading
+    class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-95 flex flex-col items-center justify-center">
+    <div [style.border-color]="background_color"
+        class="loader ease-linear rounded-full border-4 border-t-4  h-12 w-12 mb-4">
+    </div>
+    <h2 [style.color]="background_color" class="text-center  text-xl font-semibold">Loading...</h2>
+    <p [style.color]="background_color" class="w-1/3 text-center ">please don't close this page.</p>
+</div>
