@@ -47,10 +47,11 @@
     </div>
 
     @if (expand) {
-    <app-qoute-overview class="fixed z-30" [qoute]="qouteToPass"></app-qoute-overview>
+    <app-qoute-overview class="animate-jump-in  animate-once
+ fixed z-30" [qoute]="qouteToPass"></app-qoute-overview>
     <button id="expandButton" (click)="expand = false">
-        <svg class="z-50 w-5 h-5 absolute right-5 top-5 " viewBox="0 0 32 32" version="1.1"
-            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        <svg class=" animate-jump-in  animate-once z-50 w-5 h-5 absolute right-5 top-5 " viewBox="0 0 32 32"
+            version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -116,6 +117,20 @@
         </svg>
     </div>
 
+
+
+    <svg id="heart" class="scale-0  transition-all duration-150  fixed w-[30%] right-[35%] top-1/2 z-50 "
+        viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+            <path
+                d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+                fill="#ffffff"></path>
+        </g>
+    </svg>
+
+
     <div class="pt-32  h-screen relative">
 
         <div class="px-4 flex flex-col gap-10 pb-40 ">
@@ -159,13 +174,13 @@
                 </div>
 
                 <div [style.background-color]="qoutes_bottom_color"
-                    class="px-10 py-4 flex justify-between items-center ">
+                    class="px-10 py-4 flex justify-between items-center">
+
                     @if (Qoutes.favorited) {
 
-                    <button (click)="deleteFav(Qoutes.content )">
-
-                        <svg class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button (click)="deleteFav(Qoutes.content)" (click)="fillcolor(i,'delete')">
+                        <svg id="deletefavorite{{i}}" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -179,16 +194,15 @@
 
                     }@else {
 
-                    <button (click)="addFavorite(Qoutes.content , Qoutes.author)">
-
-                        <svg class="h-7 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                    <button (click)="addFavorite(Qoutes.content,Qoutes.author)" (click)="fillcolor(i,'add')">
+                        <svg id="addfavorite{{i}}" class="h-7 duration-150 transition-all hover:h-10"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
                                 <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
                                     d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
-                                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 </path>
                             </g>
                         </svg>
@@ -280,6 +294,13 @@
 
     <div class="pt-32  h-screen relative">
 
+        @if(!favourite){
+
+        <div class="fixed h-full w-full flex pt-[30%]">
+            <p class="text-black px-20 text-center">🌟 No favorites yet 🌟 <br>time to explore and discover! 🚀✨</p>
+        </div>
+        }
+
         <div class="px-4 flex flex-col gap-10 pb-40 ">
 
 
@@ -300,9 +321,9 @@
                 <div [style.background-color]="qoutes_bottom_color"
                     class="px-10 py-4 flex justify-between items-center ">
 
-                    <button (click)="deleteFav(Qoutes.content)">
+                    <button (click)="deleteFav(Qoutes.content)" (click)="fillcolor(i,'delete')">
 
-                        <svg id="favorited" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
+                        <svg id="deletefav{{i}}" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -371,6 +392,8 @@
                     </button>
                 </div>
             </div>
+
+
 
 
 

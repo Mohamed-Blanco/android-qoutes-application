@@ -35,7 +35,7 @@ export class ScrollHomeComponent {
 
     await this.databaseService.initializeDatabase();
     await this.selectQoutes();
-    this.favourite = await this.getAllFavorites();
+    await this.getAllFavorites();
     this.loading = false;
 
 
@@ -77,7 +77,58 @@ export class ScrollHomeComponent {
     }
   }
 
+  fillcolor(index: number, op: string) {
+
+    let list = document.getElementById(op + 'favorite' + index)?.classList;
+
+    let favbool = false;
+
+    if (list) {
+      const classArray = Array.from(list); // Convert DOMTokenList to an array
+      for (let classname of classArray) {
+        if (classname === 'fill-[#FF009E]') {
+
+          favbool = true;
+          console.log("found");
+          break;
+        }
+      }
+    }
+
+    if (favbool) {
+
+      document.getElementById(op + 'favorite' + index)?.classList.remove('fill-[#FF009E]')
+      document.getElementById(op + 'favorite' + index)?.classList.remove('stroke-black')
+      document.getElementById(op + 'favorite' + index)?.classList.add('stroke-white')
+      document.getElementById(op + 'favorite' + index)?.classList.add('stroke-white')
+      document.getElementById(op + 'favorite' + index)?.classList.add('border-style')
+
+
+    } else {
+
+      document.getElementById(op + 'favorite' + index)?.classList.add('fill-[#FF009E]')
+      document.getElementById(op + 'favorite' + index)?.classList.remove('stroke-black')
+
+      document.getElementById('heart')?.classList.remove('scale-0')
+      document.getElementById('heart')?.classList.add('scale-150')
+
+      setTimeout(() => {
+        document.getElementById('heart')?.classList?.remove('scale-150')
+        document.getElementById('heart')?.classList?.add('scale-100 ')
+      }, 150)
+
+      setTimeout(() => {
+        document.getElementById('heart')?.classList.remove('scale-100')
+        document.getElementById('heart')?.classList.add('scale-0')
+      }, 2000)
+
+    }
+
+
+  }
+
   async addFavorite(content: string, author: string): Promise<void> {
+
     const newFavourite: Omit<favourite, 'id_favourite'> = {
       content: content,
       author: author,
@@ -85,7 +136,6 @@ export class ScrollHomeComponent {
     };
     this.headtitle = "Favorites :"
     this.databaseService.addTofavorites<favourite>(this.storeName, newFavourite);
-    this.selectQoutes()
 
   }
 
@@ -93,8 +143,6 @@ export class ScrollHomeComponent {
 
 
     await this.databaseService.deleteFavourite(this.storeName, content);
-    await this.getAllFavorites()
-    await this.selectQoutes()
   }
 
   async getAllFavorites(): Promise<favourite[]> {
@@ -106,12 +154,16 @@ export class ScrollHomeComponent {
 
   pageFavorite: boolean = false;
 
-  Switchfavourite() {
+  async Switchfavourite() {
+    this.loading = true
     if (this.pageFavorite) {
+      await this.selectQoutes()
       this.pageFavorite = false;
     } else {
+      this.getAllFavorites()
       this.pageFavorite = true;
     }
+    this.loading = false
   }
 
 
@@ -148,7 +200,7 @@ export class ScrollHomeComponent {
 
 
   Qoutes_data: Qoutes[] = [];
-  qouteToPass !: Qoutes;
+  qouteToPass!: Qoutes;
 
   PassQoute(pass: Qoutes) {
     this.expand = true
@@ -180,14 +232,13 @@ export class ScrollHomeComponent {
         let newQoute: Qoutes = {
           content: "test qoute , this means that there is just for testing ",
           author: "tester",
-          favorited: false
+          favorited: true
         }
         this.Qoutes_data.push(newQoute)
         this.Qoutes_data.push(newQoute)
         this.Qoutes_data.push(newQoute)
         this.Qoutes_data.push(newQoute)
       });
-
   }
 
 
