@@ -1,0 +1,55 @@
+<div class="bg-black w-screen h-screen flex flex-col items-end gap-5  justify-end pb-10 px-10 pt-10 ">
+
+
+    <div cdkDropList class="h-full w-full" (cdkDropListDropped)="drop($event)">
+
+        <div id="quotesContainer" cdkDrag class="  bg-white  h-full w-full rounded-xl  shadow-gray-600 relative p-10">
+            @if (currentQuote) {
+            <p class="text-black text-xl ">" {{currentQuote}} "
+            </p>
+            }
+
+
+            <p class="text-xl bottom-10 right-10 absolute ">Raktivist saying</p>
+        </div>
+    </div>
+
+    <div class="w-full justify-between flex items-start 0">
+
+        <div id="crossbg"
+            class="w-16 h-16 flex transition-all duration-300 justify-center items-center  bg-white rounded-full shadow-gray-600 shadow-md  ">
+            <svg id="cross" class="w-12 fill-[#FA5041] transition-all duration-300" fill="#000000" viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M18.8,16l5.5-5.5c0.8-0.8,0.8-2,0-2.8l0,0C24,7.3,23.5,7,23,7c-0.5,0-1,0.2-1.4,0.6L16,13.2l-5.5-5.5 c-0.8-0.8-2.1-0.8-2.8,0C7.3,8,7,8.5,7,9.1s0.2,1,0.6,1.4l5.5,5.5l-5.5,5.5C7.3,21.9,7,22.4,7,23c0,0.5,0.2,1,0.6,1.4 C8,24.8,8.5,25,9,25c0.5,0,1-0.2,1.4-0.6l5.5-5.5l5.5,5.5c0.8,0.8,2.1,0.8,2.8,0c0.8-0.8,0.8-2.1,0-2.8L18.8,16z">
+                    </path>
+                </g>
+            </svg>
+        </div>
+        <div class="w-16 h-16 flex justify-center items-center bg-white rounded-full  shadow-gray-600 shadow-md ">
+
+        </div>
+        <div id="heartbg"
+            class="w-16 h-16 flex justify-center items-center bg-white rounded-full  shadow-gray-600 shadow-md ">
+            <svg id="heart" class="w-8 fill-green-400 transition-all duration-300" viewBox="0 0 16 16" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z">
+                    </path>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>

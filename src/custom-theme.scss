@@ -1,0 +1,35 @@
+@use '@angular/material' as mat;
+
+// Define a custom color palette
+$custom-primary: mat.define-palette(mat.$blue-palette, 500);
+$custom-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$custom-warn: mat.define-palette(mat.$red-palette);
+
+// Create a theme with custom palettes
+$custom-theme: mat.define-light-theme((color: (primary: $custom-primary,
+                accent: $custom-accent,
+                warn: $custom-warn )));
+
+// Include the theme styles
+@include mat.core();
+@include mat.all-component-themes($custom-theme);
+
+// Specific overrides for mat-tab-group
+.mat-tab-group {
+    background-color: green; // Custom background
+
+    // Customize tab labels
+    .mat-tab-label {
+        color: #333; // Custom text color
+
+        // Active tab styling
+        &.mat-tab-label-active {
+            color: green; // Color for active tab
+        }
+    }
+
+    // Customize the ink bar (underline)
+    .mat-ink-bar {
+        background-color: #631a1a; // Custom active indicator color
+    }
+}

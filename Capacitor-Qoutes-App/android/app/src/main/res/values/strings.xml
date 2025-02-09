@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">quotes-app</string>
+    <string name="title_activity_main">quotes-app</string>
+    <string name="package_name">com.Blanco.App</string>
+    <string name="custom_url_scheme">com.Blanco.App</string>
+</resources>

@@ -1,40 +1,14 @@
 <div class="relative">
+
+
     @if(loading){
-    <div [style.color]="text_color" [style.background-color]="background_color"
-        class="qoutenavbar shadow-lg  text-lg z-20 py-4 px-6 fixed w-screen  ">
-        <p>Qoutes : </p>
-    </div>
+
 
     <div class="justify-center items-center h-screen w-screen flex">
         <app-loading></app-loading>
     </div>
 
-    <div [style.color]="text_color" [style.background-color]="background_color"
-        class="qoutenavbar shadow-lg text-lg py-4 px-6 fixed bottom-0 w-screen flex justify-center  gap-20">
 
-        <button (click)="Switchfavourite()" (click)="getAllFavorites()">
-            <svg class="w-5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier">
-                    <path
-                        d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
-                        fill="	#ff009e"></path>
-                </g>
-            </svg>
-        </button>
-
-
-        <svg class="w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path
-                    d="M15.0309 3.30271C13.0299 2.8991 10.9701 2.8991 8.96913 3.30271C6.66186 3.76809 5 5.82231 5 8.20894V18.6292C5 20.4579 6.9567 21.596 8.51221 20.6721L11.3451 18.9895C11.7496 18.7492 12.2504 18.7492 12.6549 18.9895L15.4878 20.6721C17.0433 21.596 19 20.4579 19 18.6292V8.20894C19 5.82231 17.3381 3.76809 15.0309 3.30271Z"
-                    fill="#efbf04"></path>
-            </g>
-        </svg>
-    </div>
     }
     @else{
 
@@ -43,12 +17,11 @@
 
     <div [style.color]="text_color" [style.background-color]="background_color"
         class=" shadow-lg  text-lg z-20 py-4 px-6 fixed w-screen  ">
-        <p>Qoutes : </p>
+        <p>Qoutes </p>
     </div>
 
     @if (expand) {
-    <app-qoute-overview class="animate-jump-in  animate-once
- fixed z-30" [qoute]="qouteToPass"></app-qoute-overview>
+    <app-qoute-overview class="animate-jump-in  animate-once fixed z-30" [qoute]="qouteToPass"></app-qoute-overview>
     <button id="expandButton" (click)="expand = false">
         <svg class=" animate-jump-in  animate-once z-50 w-5 h-5 absolute right-5 top-5 " viewBox="0 0 32 32"
             version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -131,9 +104,9 @@
     </svg>
 
 
-    <div class="pt-32  h-screen relative">
+    <div class=" pb-16 pt-28 px-4 relative ">
 
-        <div class="px-4 flex flex-col gap-10 pb-40 ">
+        <div class=" mb-10 flex flex-col gap-10  ">
             <div id="item{{i}}" *ngFor="let Qoutes of Qoutes_data; let i = index" [style.color]="text_color"
                 [style.background-color]="qoutes_color"
                 class="relative h-[22rem] overflow-hidden rounded-lg flex flex-col justify-between shadow-lg ">
@@ -179,14 +152,14 @@
                     @if (Qoutes.favorited) {
 
                     <button (click)="deleteFav(Qoutes.content)" (click)="fillcolor(i,'delete')">
-                        <svg id="deletefavorite{{i}}" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
+                        <svg id="deletefavorite{{i}}" class="h-7  fill-[#FF009E] duration-150 transition-all hover:h-10"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
                                 <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
                                     d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
-                                    stroke="#FF009E" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                                    stroke="#FF009E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 </path>
                             </g>
                         </svg>
@@ -212,7 +185,7 @@
 
                     }
 
-                    <button (click)="captureScreenshot(i)">
+                    <button (click)="interstitial()" (click)="captureScreenshot(i)">
                         <svg class="h-7 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -229,7 +202,7 @@
                         </svg>
                     </button>
 
-                    <button (click)="copyTo(Qoutes.content)">
+                    <button (click)="interstitial()" (click)="copyTo(Qoutes.content)">
                         <svg class="h-6 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -245,7 +218,7 @@
                         </svg>
                     </button>
 
-                    <button (click)="shareContent()">
+                    <button (click)="interstitial()" (click)="shareContent()">
                         <svg class="h-6 duration-150 transition-all hover:h-10" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -265,7 +238,11 @@
                 </div>
             </div>
 
-
+            <div class=" px-4  py-4 shadow-md  flex flex-col rounded-lg  " [style.background-color]="qoutes_color"
+                [style.color]="text_color">
+                <p class="text-xl">Looking for more?</p>
+                <p>Discover more Refreshing your app</p>
+            </div>
 
 
         </div>
@@ -277,15 +254,16 @@
     }@else {
     <div [style.color]="text_color" [style.background-color]="background_color"
         class="shadow-lg text-lg z-20 py-4 px-6 fixed w-screen  flex justify-between items-center">
-        <p>Favourites : </p>
+        <p>Favorites </p>
 
-        <button class="w-8 h-8" (click)="Switchfavourite()">
-            <svg class="w-6 " viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button class="justify-between flex items-center gap-2 " (click)="Switchfavourite()">
+            <p>Return</p>
+            <svg class="w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                     <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M11.7071 4.29289C12.0976 4.68342 12.0976 5.31658 11.7071 5.70711L6.41421 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H6.41421L11.7071 18.2929C12.0976 18.6834 12.0976 19.3166 11.7071 19.7071C11.3166 20.0976 10.6834 20.0976 10.2929 19.7071L3.29289 12.7071C3.10536 12.5196 3 12.2652 3 12C3 11.7348 3.10536 11.4804 3.29289 11.2929L10.2929 4.29289C10.6834 3.90237 11.3166 3.90237 11.7071 4.29289Z"
+                        d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z"
                         fill="#ffffff"></path>
                 </g>
             </svg>
@@ -294,11 +272,18 @@
 
     <div class="pt-32  h-screen relative">
 
-        @if(!favourite){
 
-        <div class="fixed h-full w-full flex pt-[30%]">
-            <p class="text-black px-20 text-center">🌟 No favorites yet 🌟 <br>time to explore and discover! 🚀✨</p>
+        @if(favourite?.length == 0){
+
+        <div class="fixed justify-center  h-full w-full flex pt-[40%]">
+            <p class="text-black text-center"><span class="text-xl">🌟 You don't have any favorites yet 🌟</span>
+                <br>Time to
+                explore and discover! 🚀✨
+            </p>
         </div>
+
+
+
         }
 
         <div class="px-4 flex flex-col gap-10 pb-40 ">
@@ -323,14 +308,14 @@
 
                     <button (click)="deleteFav(Qoutes.content)" (click)="fillcolor(i,'delete')">
 
-                        <svg id="deletefav{{i}}" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
+                        <svg id="deletefavorite{{i}}" class="h-7 fill-[#FF009E] duration-150 transition-all hover:h-10"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
                                 <path [attr.stroke]="qoutes_color" fill-rule="evenodd" clip-rule="evenodd"
                                     d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
-                                    stroke="#000000" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 </path>
                             </g>
                         </svg>
@@ -408,7 +393,7 @@
 
 
     <div [style.color]="text_color" [style.background-color]="background_color"
-        class="text-lg py-4 px-6 fixed bottom-0 w-screen flex justify-center  gap-20">
+        class="text-lg py-4 px-12 fixed bottom-0 w-screen flex justify-between  gap-20">
 
         <button (click)="Switchfavourite()" (click)="getAllFavorites()">
             <svg class="w-5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -423,15 +408,17 @@
         </button>
 
 
-        <svg class="w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-                <path
-                    d="M15.0309 3.30271C13.0299 2.8991 10.9701 2.8991 8.96913 3.30271C6.66186 3.76809 5 5.82231 5 8.20894V18.6292C5 20.4579 6.9567 21.596 8.51221 20.6721L11.3451 18.9895C11.7496 18.7492 12.2504 18.7492 12.6549 18.9895L15.4878 20.6721C17.0433 21.596 19 20.4579 19 18.6292V8.20894C19 5.82231 17.3381 3.76809 15.0309 3.30271Z"
-                    fill="#efbf04"></path>
-            </g>
-        </svg>
+        <button>
+            <svg class="w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M4 8L6 20H18L20 8M4 8L5.71624 9.37299C6.83218 10.2657 7.39014 10.7121 7.95256 10.7814C8.4453 10.8421 8.94299 10.7173 9.34885 10.4314C9.81211 10.1051 10.0936 9.4483 10.6565 8.13476L12 5M4 8C4.55228 8 5 7.55228 5 7C5 6.44772 4.55228 6 4 6C3.44772 6 3 6.44772 3 7C3 7.55228 3.44772 8 4 8ZM20 8L18.2838 9.373C17.1678 10.2657 16.6099 10.7121 16.0474 10.7814C15.5547 10.8421 15.057 10.7173 14.6511 10.4314C14.1879 10.1051 13.9064 9.4483 13.3435 8.13476L12 5M20 8C20.5523 8 21 7.55228 21 7C21 6.44772 20.5523 6 20 6C19.4477 6 19 6.44772 19 7C19 7.55228 19.4477 8 20 8ZM12 5C12.5523 5 13 4.55228 13 4C13 3.44772 12.5523 3 12 3C11.4477 3 11 3.44772 11 4C11 4.55228 11.4477 5 12 5ZM12 4H12.01M20 7H20.01M4 7H4.01"
+                        stroke="#EFBF04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </svg>
+        </button>
     </div>
 
     }

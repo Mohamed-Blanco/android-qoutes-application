@@ -7,3 +7,7 @@
   src: url("assets/fonts/gabarito/Gabarito-Medium.ttf") format("truetype");
   font-weight: lighter;
 }
+
+.mat-tab-group {
+  background-color: #000000 !important;
+}

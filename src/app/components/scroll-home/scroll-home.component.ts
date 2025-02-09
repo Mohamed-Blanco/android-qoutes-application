@@ -8,6 +8,8 @@ import { NgForm } from '@angular/forms';
 import { ScreenshotService } from '../../services/screenshot.service';
 import { environment } from '../../../environment';
 import { Qoutes } from '../../services/qoute';
+import { AdmobService } from '../../services/Admob.service';
+import { AdLoadInfo, AdMob, AdmobConsentStatus, AdMobRewardItem, AdOptions, InterstitialAdPluginEvents, RewardAdOptions, RewardAdPluginEvents } from '@capacitor-community/admob';
 
 
 
@@ -33,13 +35,21 @@ export class ScrollHomeComponent {
 
   async ngOnInit(): Promise<void> {
 
+
+    await this.initialize();
+    await this.interstitial()
     await this.databaseService.initializeDatabase();
     await this.selectQoutes();
     await this.getAllFavorites();
+
+
     this.loading = false;
 
-
   }
+
+
+
+
 
   async captureScreenshot(element: number) {
     try {
@@ -60,6 +70,8 @@ export class ScrollHomeComponent {
     }
   }
 
+
+
   // Capture screenshot with custom options
   async captureCustomScreenshot() {
     try {
@@ -77,6 +89,8 @@ export class ScrollHomeComponent {
     }
   }
 
+
+
   fillcolor(index: number, op: string) {
 
     let list = document.getElementById(op + 'favorite' + index)?.classList;
@@ -87,11 +101,11 @@ export class ScrollHomeComponent {
       const classArray = Array.from(list); // Convert DOMTokenList to an array
       for (let classname of classArray) {
         if (classname === 'fill-[#FF009E]') {
-
           favbool = true;
           console.log("found");
           break;
         }
+
       }
     }
 
@@ -210,9 +224,8 @@ export class ScrollHomeComponent {
   selectQoutes() {
     this.loading = true
     this.Qoutes_data = [];
-    this.supabaseService.selectQoutes(this.Qoutes_data)
+    this.supabaseService.selectQoutes()
       .then(async (response) => {
-
         for (let Qte of response) {
           let fav = await this.databaseService.checkFavorite(this.storeName, Qte.content)
           let newQoute: Qoutes = {
@@ -241,5 +254,88 @@ export class ScrollHomeComponent {
       });
   }
 
+
+  async initialize(): Promise<void> {
+    await AdMob.initialize();
+
+    const [trackingInfo, consentInfo] = await Promise.all([
+      AdMob.trackingAuthorizationStatus(),
+      AdMob.requestConsentInfo(),
+    ]);
+
+    if (trackingInfo.status === 'notDetermined') {
+      /**
+       * If you want to explain TrackingAuthorization before showing the iOS dialog,
+       * you can show the modal here.
+       * ex)
+       * const modal = await this.modalCtrl.create({
+       *   component: RequestTrackingPage,
+       * });
+       * await modal.present();
+       * await modal.onDidDismiss();  // Wait for close modal
+       **/
+
+      await AdMob.requestTrackingAuthorization();
+    }
+
+    const authorizationStatus = await AdMob.trackingAuthorizationStatus();
+    if (
+      authorizationStatus.status === 'authorized' &&
+      consentInfo.isConsentFormAvailable &&
+      consentInfo.status === AdmobConsentStatus.REQUIRED
+    ) {
+      await AdMob.showConsentForm();
+    }
+  }
+
+  async interstitial(): Promise<void> {
+    AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
+      // Subscribe prepared interstitial
+    });
+
+    const options: AdOptions = {
+      adId: 'ca-app-pub-3940256099942544/1033173712',
+      // isTesting: true
+      // npa: true
+    };
+    await AdMob.prepareInterstitial(options);
+    await AdMob.showInterstitial();
+  }
+
+
+  async rewardVideo(): Promise<void> {
+    AdMob.addListener(RewardAdPluginEvents.Loaded, (info: AdLoadInfo) => {
+      // Subscribe prepared rewardVideo
+    });
+
+    AdMob.addListener(
+      RewardAdPluginEvents.Rewarded,
+      (rewardItem: AdMobRewardItem) => {
+        // Subscribe user rewarded
+        console.log(rewardItem);
+      },
+    );
+
+    const options: RewardAdOptions = {
+      adId: 'ca-app-pub-3940256099942544/1033173712',
+      // isTesting: true
+      // npa: true
+      // ssv: {
+      //   userId: "A user ID to send to your SSV"
+      //   customData: JSON.stringify({ ...MyCustomData })
+      //}
+    };
+    await AdMob.prepareRewardVideoAd(options);
+    const rewardItem = await AdMob.showRewardVideoAd();
+  }
+
+
+  async showConsent() {
+    const consentInfo = await AdMob.requestConsentInfo();
+
+    if (consentInfo.isConsentFormAvailable && consentInfo.status === AdmobConsentStatus.REQUIRED) {
+      const { status } = await AdMob.showConsentForm();
+    }
+  }
 
 }

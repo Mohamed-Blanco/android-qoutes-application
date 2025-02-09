@@ -12,6 +12,8 @@ import { ScrollHomeModule } from './components/scroll-home/scroll-home.module';
 import { LoadingModule } from './components/loading/loading.module';
 import { QouteOverviewComponent } from './components/qoute-overview/qoute-overview.component';
 import { QouteOverviewModule } from './components/qoute-overview/qoute-overview.module';
+import { AdMob } from '@capacitor-community/admob';
+import { AdmobService } from './services/Admob.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { QouteOverviewModule } from './components/qoute-overview/qoute-overview.
     provideAnimationsAsync(),
     SupabaseService,
     SQLite,
+    AdmobService
   ],
   bootstrap: [AppComponent]
 })

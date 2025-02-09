@@ -15,12 +15,12 @@ export class SupabaseService {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
   }
 
-  async selectQoutes(Qoutes: any) {
+  async selectQoutes() {
     try {
       const { data, error } = await this.supabase
-        .from('Qoutes_table')
+        .from('Qoutes')
         .select('*')
-        .order('author', { ascending: true })
+        .order('RANDOM()', { ascending: false })
         .limit(25000)
       if (error) {
         throw error;

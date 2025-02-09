@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+.container {
+  height: 570px;
+  width: 325px;
+
+  overflow-y: scroll;
+
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(3rem);
+  scroll-snap-type: y mandatory;
+  position: relative;
+  left: 510px;
+  top: 50px;
+  z-index: 1;
+  border-radius: 15px;
+  border: none;
+}
+
+.tiktok {
+  height: 620px;
+  width: 300px;
+  background-color: black;
+  scroll-snap-align: start;
+}
+
+.phonefront-container {
+  position: absolute;
+  top: -80px;
+  left: 200px;
+}
+
+.phone-outer {
+  position: absolute;
+  height: 650px;
+  width: 350px;
+  border-radius: 30px;
+  background-color: black;
+  top: 120px;
+  left: 300px;
+  border: 5px solid rgb(192, 192, 250);
+
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12), 3px 3px 5px 3px rgb(133, 133, 180);
+}
+
+.front-indent {
+  position: absolute;
+  height: 28px;
+  width: 150px;
+  border-radius: 30px;
+  background-color: black;
+  z-index: 2;
+  left: 100px;
+}
+
+.phone-screen {
+  position: absolute;
+  height: 630px;
+  width: 330px;
+  border-radius: 15px;
+  background-color: black;
+  top: 10px;
+  left: 10px;
+}
+
+.speaker {
+  width: 50px;
+  height: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(82, 82, 82, 1) 0%,
+    rgba(167, 166, 166, 1) 50%,
+    rgba(98, 98, 98, 1) 100%
+  );
+  border-radius: 25px;
+  position: absolute;
+  top: 10px;
+  left: 140px;
+  z-index: 3;
+  box-shadow: inset 0 0 10px #000000;
+}
+
+.front-camera {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(37, 37, 37, 1) 0%,
+    rgba(34, 0, 255, 1) 51%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  border-radius: 25px;
+  box-shadow: inset 0 0 10px #000000;
+  position: absolute;
+  left: 210px;
+  z-index: 2;
+  top: 5px;
+}
+
+.front-lens {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(
+    90deg,
+    rgba(37, 37, 37, 1) 0%,
+    rgba(0, 0, 0, 1) 34%,
+    rgba(255, 255, 255, 1) 71%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  border-radius: 25px;
+  box-shadow: inset 0 0 10px #000000;
+  position: absolute;
+  left: 2px;
+  z-index: 3;
+  top: 2px;
+}
+
+.homebtn {
+  width: 100px;
+  height: 5px;
+  background-color: rgb(168, 166, 166);
+  border-radius: 25px;
+  position: absolute;
+  bottom: 10px;
+  left: 130px;
+  z-index: 10;
+}
+
+.menu {
+  background-color: black;
+  position: absolute;
+  left: 517px;
+  z-index: 5;
+  top: 615px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.btn {
+  float: left;
+  padding: 15px;
+  margin-bottom: 10px;
+  color: rgb(218, 214, 214);
+  font-size: 0.68rem;
+}
+
+.fas,
+.far {
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+.plus {
+  width: 23px;
+  height: 8px;
+  background-color: white;
+  margin-top: 12px;
+  border-radius: 5px;
+  margin-right: 15px;
+  margin-left: 5px;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: inset 8px 0px 0px 0px rgb(0, 238, 255),
+    inset -8px 0px 0px 0px rgb(255, 29, 86);
+}
+
+.fa-plus {
+  position: absolute;
+  left: 156px;
+  top: 19px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
